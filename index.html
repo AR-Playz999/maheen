@@ -76,11 +76,11 @@
       border-bottom: 1px solid rgba(20,47,59,.1);
       background: rgba(255,250,240,.96);
     }
-    .topbar-inner { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 20px; }
+    .topbar-inner { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; column-gap: clamp(24px, 5vw, 72px); }
     .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 14px; }
     .brand-mark { display: grid; place-items: center; width: 27px; height: 27px; border-radius: 50%; color: var(--ink); background: var(--sun); font-family: 'Fraunces', serif; font-size: 19px; }
-    .nav-links { display: flex; align-items: center; gap: 20px; font-size: 12px; font-weight: 700; color: var(--muted); }
-    .header-credit { color: var(--muted); font: 500 10px 'DM Mono', monospace; letter-spacing: .07em; text-align: center; text-transform: uppercase; }
+    .nav-links { display: flex; align-items: center; justify-self: end; gap: 20px; font-size: 12px; font-weight: 700; color: var(--muted); }
+    .header-credit { color: var(--muted); font: 500 10px 'DM Mono', monospace; letter-spacing: .07em; text-align: center; text-transform: uppercase; white-space: nowrap; }
     .nav-links a:hover { color: var(--coral); }
     .progress { position: absolute; bottom: -2px; left: 0; width: var(--progress, 0%); height: 3px; background: var(--coral); transition: width .1s linear; }
 
@@ -137,7 +137,7 @@
     .closing h2 em { color: var(--sun); font-style: normal; }
     .closing p { max-width: 460px; color: #b3cbce; font-size: 16px; line-height: 1.7; }
     .closing-foot { display: flex; justify-content: space-between; align-items: end; gap: 30px; margin-top: 100px; padding-top: 20px; border-top: 1px solid rgba(255,250,240,.2); color: #8eafb4; font: 11px 'DM Mono', monospace; text-transform: uppercase; letter-spacing: .07em; }
-    .heart { color: var(--coral); font-size: 20px; }
+    .heart { color: var(--coral); font-size: 15px; gap: 4px; }
 
     .reveal { opacity: 0; transform: translateY(28px); transition: opacity .8s ease, transform .8s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
@@ -146,6 +146,7 @@
       .topbar { padding: 14px 0; }
       .nav-links a:not(:last-child) { display: none; }
       .header-credit { font-size: 8px; line-height: 1.25; }
+      .nav-links { gap: 8px; }
       .hero { min-height: 700px; padding: 130px 0 80px; }
       .hero h1 { font-size: clamp(4rem, 20vw, 7rem); }
       .hero-content { padding-bottom: 155px; }
@@ -171,7 +172,7 @@
 <body>
   <header class="topbar">
     <div class="wrap topbar-inner">
-      <a class="brand" href="#top" aria-label="My Perfect Day home"><span class="brand-mark">M</span> my perfect day</a>
+      <a class="brand" href="#top" aria-label="My Perfect Day home"><span class="brand-mark">M</span></a>
       <span class="header-credit">An Initiative by Maheen and Maham</span>
       <nav class="nav-links" aria-label="Main navigation">
         <a href="#stories">The stories</a>
@@ -295,7 +296,7 @@
         <span class="eyebrow">Tomorrow starts here</span>
         <h2>Notice people.<br>Choose <em>kindness.</em></h2>
         <p>Our perfect days are connected. When one person gets a little more dignity, time, or care, the whole day changes shape.</p>
-        <div class="closing-foot"><span>My Perfect Day / 2026</span><span class="heart">Made with heart by Maheen and Maham</span><span>Made for the people who make things possible</span></div>
+        <div class="closing-foot"><span>My Perfect Day / 2026</span><span class="heart">Made with ❤️ by Maheen and Maham</span><span>Made for the people who make things possible</span></div>
       </div>
     </footer>
   </main>

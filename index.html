@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>My Perfect Day — Small joys, seen clearly</title>
+  <meta name="description" content="A bright, scroll-led collection of perfect days imagined by the people who keep a city moving.">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap');
+
+    :root {
+      --ink: #142f3b;
+      --muted: #60747a;
+      --paper: #fffaf0;
+      --blue: #4e90ec;
+      --sky: #bfe9fa;
+      --coral: #ff765d;
+      --sun: #ffc952;
+      --mint: #b7e7c6;
+      --lilac: #d9c9f5;
+      --line: rgba(20, 47, 59, .13);
+      --radius: 28px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: 'Manrope', sans-serif;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    .wrap { width: min(1180px, calc(100% - 40px)); margin: auto; }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--muted);
+      font: 500 11px/1 'DM Mono', monospace;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .eyebrow::before { content: ''; width: 24px; height: 2px; background: var(--coral); }
+    h1, h2, h3, p { margin-top: 0; }
+    h1, h2, h3 { font-family: 'Fraunces', Georgia, serif; font-weight: 600; }
+
+    .topbar {
+      position: fixed;
+      z-index: 10;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 18px 0;
+      border-bottom: 1px solid rgba(20,47,59,.1);
+      background: rgba(255,250,240,.96);
+    }
+    .topbar-inner { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; column-gap: clamp(24px, 5vw, 72px); }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 14px; }
+    .brand-mark { display: grid; place-items: center; width: 27px; height: 27px; border-radius: 50%; color: var(--ink); background: var(--sun); font-family: 'Fraunces', serif; font-size: 19px; }
+    .nav-links { display: flex; align-items: center; justify-self: end; gap: 20px; font-size: 12px; font-weight: 700; color: var(--muted); }
+    .header-credit { color: var(--muted); font: 500 10px 'DM Mono', monospace; letter-spacing: .07em; text-align: center; text-transform: uppercase; white-space: nowrap; }
+    .nav-links a:hover { color: var(--coral); }
+    .progress { position: absolute; bottom: -2px; left: 0; width: var(--progress, 0%); height: 3px; background: var(--coral); transition: width .1s linear; }
+
+    .hero { position: relative; min-height: 760px; display: grid; align-items: center; padding: 150px 0 100px; overflow: hidden; background: var(--sky); }
+    .hero::before, .hero::after { content: ''; position: absolute; pointer-events: none; border-radius: 50%; }
+    .hero::before { width: 53vw; height: 53vw; right: -16vw; top: -15vw; background: var(--sun); }
+    .hero::after { width: 38vw; height: 20vw; left: -6vw; bottom: -12vw; background: var(--mint); transform: rotate(-12deg); }
+    .hero-content { position: relative; z-index: 1; max-width: 780px; }
+    .hero h1 { max-width: 780px; margin: 24px 0 25px; font-size: clamp(4rem, 10vw, 8.7rem); line-height: .88; letter-spacing: -.055em; }
+    .hero h1 em { color: var(--coral); font-style: normal; }
+    .hero-intro { max-width: 470px; margin-bottom: 45px; color: #335361; font-size: 17px; line-height: 1.65; }
+    .hero-foot { position: relative; z-index: 3; display: flex; align-items: center; gap: 16px; color: #335361; font: 500 11px/1 'DM Mono', monospace; text-transform: uppercase; letter-spacing: .08em; }
+    .scroll-arrow { display: grid; place-items: center; width: 39px; height: 39px; border: 1px solid rgba(20,47,59,.3); border-radius: 50%; font-size: 19px; animation: bob 2.2s ease-in-out infinite; }
+    @keyframes bob { 50% { transform: translateY(5px); } }
+    .hero-sticker { position: absolute; right: 8%; bottom: 14%; z-index: 2; display: grid; place-items: center; width: 150px; height: 150px; padding: 20px; border: 2px solid var(--ink); border-radius: 50%; color: var(--ink); background: var(--coral); font: 700 14px/1.25 'Fraunces', serif; text-align: center; overflow: hidden; transform: rotate(11deg); }
+    .hero-sticker span { display: block; font: 400 22px 'Fraunces', serif; }
+
+    .section { position: relative; padding: 130px 0; }
+    .section-heading { display: flex; align-items: end; justify-content: space-between; gap: 40px; margin-bottom: 58px; }
+    .section-heading h2 { max-width: 560px; margin: 15px 0 0; font-size: clamp(2.7rem, 6vw, 5.3rem); line-height: .98; letter-spacing: -.045em; }
+    .section-heading p { max-width: 310px; margin-bottom: 5px; color: var(--muted); line-height: 1.65; font-size: 14px; }
+
+    .day-card { position: relative; display: grid; grid-template-columns: 1fr 1.12fr; min-height: 485px; overflow: hidden; border-radius: var(--radius); background: white; box-shadow: 0 10px 28px rgba(48, 77, 71, .08); }
+    .day-card + .day-card { margin-top: 48px; }
+    .day-card.reverse { grid-template-columns: 1.12fr 1fr; }
+    .day-card.reverse .day-art { order: 2; }
+    .day-art { position: relative; display: grid; place-items: center; overflow: hidden; background: var(--mint); }
+    .day-card.sunny .day-art { background: var(--sun); }
+    .day-card.blue .day-art { background: var(--sky); }
+    .day-card.purple .day-art { background: var(--lilac); }
+    .day-art::before { content: ''; position: absolute; width: 250px; height: 250px; border: 1px solid rgba(20,47,59,.18); border-radius: 50%; box-shadow: 0 0 0 28px rgba(255,255,255,.12); }
+    .day-art svg { position: relative; width: min(74%, 330px); height: auto; overflow: visible; }
+    .art-caption { position: absolute; bottom: 22px; left: 25px; font: 500 11px 'DM Mono', monospace; text-transform: uppercase; letter-spacing: .08em; }
+    .day-copy { display: flex; flex-direction: column; justify-content: center; padding: clamp(32px, 6vw, 76px); }
+    .role-number { margin-bottom: 30px; color: var(--coral); font: 500 12px 'DM Mono', monospace; }
+    .day-copy h3 { max-width: 400px; margin-bottom: 22px; font-size: clamp(2.2rem, 4vw, 4.1rem); line-height: .98; letter-spacing: -.04em; }
+    .day-copy p { max-width: 400px; color: var(--muted); font-size: 15px; line-height: 1.75; }
+    .quote { position: relative; margin: 21px 0 0; padding: 17px 0 0 21px; border-top: 1px solid var(--line); color: var(--ink) !important; font: 600 16px/1.45 'Fraunces', serif; }
+    .quote::before { content: '“'; position: absolute; top: 8px; left: 0; color: var(--coral); font: 34px/1 Georgia, serif; }
+    .tiny-label { margin-top: 23px; color: var(--muted); font: 500 10px 'DM Mono', monospace; letter-spacing: .08em; text-transform: uppercase; }
+
+    .manifesto { padding: 150px 0; background: var(--coral); overflow: hidden; }
+    .manifesto-inner { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 70px; }
+    .manifesto h2 { max-width: 600px; margin: 15px 0 0; font-size: clamp(3.3rem, 7vw, 7.6rem); line-height: .86; letter-spacing: -.06em; }
+    .manifesto h2 span { color: var(--paper); }
+    .manifesto-copy { max-width: 370px; font-size: 16px; line-height: 1.8; }
+    .manifesto-copy strong { display: block; margin-bottom: 17px; font: 600 24px/1.15 'Fraunces', serif; }
+    .stamp { display: grid; place-items: center; width: 122px; height: 122px; margin-top: 45px; border: 1.5px solid var(--ink); border-radius: 50%; color: var(--ink); font: 500 10px/1.4 'DM Mono', monospace; text-align: center; text-transform: uppercase; transform: rotate(-12deg); }
+
+    .closing { padding: 145px 0 100px; background: var(--ink); color: var(--paper); }
+    .closing .eyebrow { color: #a6c4c8; }
+    .closing .eyebrow::before { background: var(--sun); }
+    .closing h2 { max-width: 760px; margin: 20px 0 30px; font-size: clamp(3.4rem, 8vw, 8.5rem); line-height: .86; letter-spacing: -.06em; }
+    .closing h2 em { color: var(--sun); font-style: normal; }
+    .closing p { max-width: 460px; color: #b3cbce; font-size: 16px; line-height: 1.7; }
+    .closing-foot { display: flex; justify-content: space-between; align-items: end; gap: 30px; margin-top: 100px; padding-top: 20px; border-top: 1px solid rgba(255,250,240,.2); color: #8eafb4; font: 11px 'DM Mono', monospace; text-transform: uppercase; letter-spacing: .07em; }
+    .heart { color: var(--coral); font-size: 15px; gap: 4px; transform: translateX(18px); }
+
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .8s ease, transform .8s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    @media (max-width: 760px) {
+      .wrap { width: min(100% - 28px, 560px); }
+      .topbar { padding: 14px 0; }
+      .nav-links a:not(:last-child) { display: none; }
+      .header-credit { font-size: 8px; line-height: 1.25; }
+      .nav-links { gap: 8px; }
+      .hero { min-height: 700px; padding: 130px 0 80px; }
+      .hero h1 { font-size: clamp(4rem, 20vw, 7rem); }
+      .hero-content { padding-bottom: 155px; }
+      .hero-foot { max-width: 220px; align-items: flex-start; line-height: 1.45; }
+      .hero-sticker { right: 3%; bottom: 7%; width: 112px; height: 112px; padding: 14px; font-size: 10px; line-height: 1.15; }
+      .hero-sticker span { font-size: 18px; }
+      .section { padding: 88px 0; }
+      .section-heading { display: block; margin-bottom: 35px; }
+      .section-heading p { margin-top: 22px; }
+      .day-card, .day-card.reverse { display: block; }
+      .day-card + .day-card { margin-top: 24px; }
+      .day-card.reverse .day-art { order: initial; }
+      .day-art { min-height: 310px; }
+      .day-copy { padding: 38px 28px 46px; }
+      .manifesto { padding: 96px 0; }
+      .manifesto-inner { display: block; }
+      .manifesto-copy { margin-top: 45px; }
+      .closing { padding: 100px 0 65px; }
+      .closing-foot { align-items: start; flex-direction: column; margin-top: 70px; }
+      .heart { transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a class="brand" href="#top" aria-label="My Perfect Day home"><span class="brand-mark">M</span></a>
+      <span class="header-credit">An Initiative by Maheen and Maham</span>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#stories">The stories</a>
+        <a href="#promise">The promise</a>
+        <span>01—04</span>
+      </nav>
+    </div>
+    <div class="progress" aria-hidden="true"></div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap hero-content">
+        <span class="eyebrow">A collection of ordinary magic</span>
+        <h1>My <em>perfect</em><br>day.</h1>
+        <p class="hero-intro">What does a good day look like when you spend your days making everyone else’s run smoothly? We asked the people who keep our homes, roads, and workplaces moving.</p>
+        <div class="hero-foot"><span class="scroll-arrow">↓</span> Scroll slowly. There’s plenty to notice.</div>
+      </div>
+      <div class="hero-sticker"><span>♥</span>every day<br>deserves<br>some softness</div>
+    </section>
+
+    <section class="section" id="stories">
+      <div class="wrap">
+        <div class="section-heading reveal">
+          <div><span class="eyebrow">Four points of view</span><h2>A day is made<br>of small things.</h2></div>
+          <p>Not grand holidays. Just enough time, dignity, and room to breathe. Meet the people behind the everyday.</p>
+        </div>
+
+        <article class="day-card reveal">
+          <div class="day-art">
+            <svg viewBox="0 0 320 290" role="img" aria-label="An illustrated blue collar worker holding a toolbox">
+              <circle cx="245" cy="55" r="28" fill="#ff765d" opacity=".75"/><path d="M28 241h270" stroke="#142f3b" stroke-width="3" stroke-linecap="round"/>
+              <path d="M114 112c0-35 25-55 55-55s55 20 55 55v70h-110z" fill="#ff765d" stroke="#142f3b" stroke-width="3"/>
+              <circle cx="169" cy="51" r="30" fill="#e99c6f" stroke="#142f3b" stroke-width="3"/><path d="M138 48c7-35 55-43 70-3-18-9-42-8-70 3z" fill="#142f3b"/>
+              <circle cx="158" cy="57" r="3" fill="#142f3b"/><circle cx="180" cy="57" r="3" fill="#142f3b"/><path d="M162 70q8 7 16 0" fill="none" stroke="#142f3b" stroke-width="2" stroke-linecap="round"/>
+              <path d="M114 127 79 164l25 24 39-42M224 127l37 27-19 29-45-29" fill="#e99c6f" stroke="#142f3b" stroke-width="3" stroke-linejoin="round"/>
+              <path d="M135 182v59M202 182v59" stroke="#142f3b" stroke-width="17" stroke-linecap="round"/><path d="M126 239h26M194 239h27" stroke="#142f3b" stroke-width="7" stroke-linecap="round"/>
+              <rect x="30" y="166" width="70" height="52" rx="5" fill="#ffc952" stroke="#142f3b" stroke-width="3"/><path d="M52 166v-10q0-9 12-9h8q12 0 12 9v10M30 184h70" fill="none" stroke="#142f3b" stroke-width="3"/>
+            </svg>
+            <span class="art-caption">01 / the maker</span>
+          </div>
+          <div class="day-copy">
+            <span class="role-number">6:30 AM — 8:45 PM</span>
+            <h3>Bilal’s day has a little less rush.</h3>
+            <p>“A perfect day starts with doodh patti I can actually sit down for. Then work that is steady, tools that work, and a supervisor who says thank you like they mean it.”</p>
+            <p class="quote">I’d be home before the streetlights come on. My daughter would show me her drawing.</p>
+            <span class="tiny-label">Blue collar worker · Lahore</span>
+          </div>
+        </article>
+
+        <article class="day-card sunny reverse reveal">
+          <div class="day-art">
+            <svg viewBox="0 0 320 290" role="img" aria-label="An illustrated house help person tending to a plant">
+              <circle cx="240" cy="58" r="34" fill="#b7e7c6"/><path d="M28 241h270" stroke="#142f3b" stroke-width="3" stroke-linecap="round"/>
+              <path d="M115 115c0-31 24-48 54-48s54 17 54 48v73H115z" fill="#4e90ec" stroke="#142f3b" stroke-width="3"/><circle cx="169" cy="53" r="29" fill="#9e684e" stroke="#142f3b" stroke-width="3"/><path d="M139 50c0-30 56-43 61 7-18-11-37-15-61-7z" fill="#142f3b"/>
+              <circle cx="159" cy="58" r="3" fill="#142f3b"/><circle cx="180" cy="58" r="3" fill="#142f3b"/><path d="M162 71q7 6 15 0" fill="none" stroke="#142f3b" stroke-width="2" stroke-linecap="round"/>
+              <path d="M115 129 78 164l25 26 42-41M223 129l42 32-20 28-48-30" fill="#9e684e" stroke="#142f3b" stroke-width="3" stroke-linejoin="round"/>
+              <path d="M138 188v53M200 188v53" stroke="#142f3b" stroke-width="17" stroke-linecap="round"/><path d="M127 240h27M190 240h25" stroke="#142f3b" stroke-width="7" stroke-linecap="round"/>
+              <path d="M255 185q4-39-12-64M242 139q-18-18-27-10M246 126q16-24 28-16" fill="none" stroke="#142f3b" stroke-width="3" stroke-linecap="round"/><path d="M231 182h35l-5 35h-25z" fill="#ff765d" stroke="#142f3b" stroke-width="3"/>
+            </svg>
+            <span class="art-caption">02 / the nurturer</span>
+          </div>
+          <div class="day-copy">
+            <span class="role-number">7:00 AM — 4:00 PM</span>
+            <h3>Ayesha wants a home day, too.</h3>
+            <p>“I like a clean house. I like the quiet after. A good day is when the family notices the work, asks if I’ve eaten, and I still have energy for my own plants.”</p>
+            <p class="quote">A kind word doesn’t cost anything. It can carry you all the way home.</p>
+            <span class="tiny-label">House help · Karachi</span>
+          </div>
+        </article>
+
+        <article class="day-card blue reveal">
+          <div class="day-art">
+            <svg viewBox="0 0 320 290" role="img" aria-label="An illustrated driver beside a small car">
+              <circle cx="80" cy="64" r="38" fill="#ffc952" opacity=".9"/><path d="M25 241h270" stroke="#142f3b" stroke-width="3" stroke-linecap="round"/>
+              <path d="M91 181q8-62 72-62t69 62" fill="#b7e7c6" stroke="#142f3b" stroke-width="3"/><circle cx="162" cy="71" r="29" fill="#9e684e" stroke="#142f3b" stroke-width="3"/><path d="M133 67c5-31 52-43 62-3-15-7-35-8-62 3z" fill="#142f3b"/><circle cx="152" cy="76" r="3" fill="#142f3b"/><circle cx="173" cy="76" r="3" fill="#142f3b"/><path d="M155 88q8 6 15 0" fill="none" stroke="#142f3b" stroke-width="2" stroke-linecap="round"/>
+              <path d="M112 143l-37 35 28 22 40-40M211 143l41 27-18 30-49-28" fill="#9e684e" stroke="#142f3b" stroke-width="3" stroke-linejoin="round"/><path d="M135 183v58M196 183v58" stroke="#142f3b" stroke-width="17" stroke-linecap="round"/><path d="M123 240h28M188 240h26" stroke="#142f3b" stroke-width="7" stroke-linecap="round"/>
+              <path d="M22 207h62l13 34H13z" fill="#ff765d" stroke="#142f3b" stroke-width="3"/><circle cx="31" cy="242" r="10" fill="#142f3b"/><circle cx="77" cy="242" r="10" fill="#142f3b"/><path d="M36 207l11-24h27l10 24" fill="#bfe9fa" stroke="#142f3b" stroke-width="3"/>
+            </svg>
+            <span class="art-caption">03 / the navigator</span>
+          </div>
+          <div class="day-copy">
+            <span class="role-number">8:00 AM — 6:00 PM</span>
+            <h3>Usman takes the scenic route.</h3>
+            <p>“No honking. No one slamming the door. Just a clean car, a full water bottle, and passengers who remember I’m a person before I’m a driver.”</p>
+            <p class="quote">I’d finish with enough daylight to walk by the lake. That would be perfect.</p>
+            <span class="tiny-label">Driver · Rawalpindi</span>
+          </div>
+        </article>
+
+        <article class="day-card purple reverse reveal">
+          <div class="day-art">
+            <svg viewBox="0 0 320 290" role="img" aria-label="An illustrated junior staff member with a notebook">
+              <circle cx="235" cy="64" r="40" fill="#ff765d" opacity=".75"/><path d="M28 241h270" stroke="#142f3b" stroke-width="3" stroke-linecap="round"/>
+              <path d="M111 117c0-32 26-49 57-49s57 17 57 49v71H111z" fill="#ffc952" stroke="#142f3b" stroke-width="3"/><circle cx="168" cy="53" r="29" fill="#d68760" stroke="#142f3b" stroke-width="3"/><path d="M139 48c5-29 52-44 63-5-18-9-42-10-63 5z" fill="#142f3b"/><circle cx="158" cy="58" r="3" fill="#142f3b"/><circle cx="179" cy="58" r="3" fill="#142f3b"/><path d="M161 70q8 6 16 0" fill="none" stroke="#142f3b" stroke-width="2" stroke-linecap="round"/>
+              <path d="M112 133l-38 35 26 24 43-40M224 133l38 37-24 23-42-38" fill="#d68760" stroke="#142f3b" stroke-width="3" stroke-linejoin="round"/><path d="M137 187v54M202 187v54" stroke="#142f3b" stroke-width="17" stroke-linecap="round"/><path d="M125 240h28M193 240h25" stroke="#142f3b" stroke-width="7" stroke-linecap="round"/>
+              <rect x="42" y="167" width="53" height="66" rx="3" fill="#fffaf0" stroke="#142f3b" stroke-width="3" transform="rotate(-12 42 167)"/><path d="m54 184 27-5m-28 16 29-5m-31 17 20-4" stroke="#ff765d" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+            <span class="art-caption">04 / the beginner</span>
+          </div>
+          <div class="day-copy">
+            <span class="role-number">9:30 AM — 6:30 PM</span>
+            <h3>Sana has time to learn.</h3>
+            <p>“I want to ask questions without feeling silly. A proper lunch break. Someone who notices when I do good work, and a little time after office to call my Ammi.”</p>
+            <p class="quote">Being new should mean being supported, not being invisible.</p>
+            <span class="tiny-label">Junior staff · Islamabad</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="manifesto" id="promise">
+      <div class="wrap manifesto-inner reveal">
+        <div><span class="eyebrow">The part we can choose</span><h2>Make room<br>for <span>good days.</span></h2></div>
+        <div class="manifesto-copy"><strong>Empathy is not an extra.</strong><p>It is the extra minute we give. The name we remember. The fair wage, the glass of water, the “you can go home now.” The world gets gentler in details.</p><div class="stamp">seen<br>heard<br>respected</div></div>
+      </div>
+    </section>
+
+    <footer class="closing">
+      <div class="wrap reveal">
+        <span class="eyebrow">Tomorrow starts here</span>
+        <h2>Notice people.<br>Choose <em>kindness.</em></h2>
+        <p>Our perfect days are connected. When one person gets a little more dignity, time, or care, the whole day changes shape.</p>
+        <div class="closing-foot"><span>My Perfect Day / 2026</span><span class="heart">Made with ❤️ by Maheen and Maham</span><span>Made for the people who make things possible</span></div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    const root = document.documentElement;
+    const reveals = document.querySelectorAll('.reveal');
+    let scrollFrame = 0;
+
+    function updateScroll() {
+      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+      const amount = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0;
+      root.style.setProperty('--progress', `${amount}%`);
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.14 });
+
+    reveals.forEach((element) => observer.observe(element));
+    window.addEventListener('scroll', () => {
+      if (scrollFrame) return;
+      scrollFrame = requestAnimationFrame(() => {
+        updateScroll();
+        scrollFrame = 0;
+      });
+    }, { passive: true });
+    window.addEventListener('resize', updateScroll);
+    updateScroll();
+  </script>
+</body>
+</html>

@@ -74,8 +74,7 @@
       width: 100%;
       padding: 18px 0;
       border-bottom: 1px solid rgba(20,47,59,.1);
-      background: rgba(255,250,240,.78);
-      backdrop-filter: blur(14px);
+      background: rgba(255,250,240,.96);
     }
     .topbar-inner { display: flex; justify-content: space-between; align-items: center; gap: 20px; }
     .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 14px; }
@@ -103,14 +102,15 @@
     .section-heading h2 { max-width: 560px; margin: 15px 0 0; font-size: clamp(2.7rem, 6vw, 5.3rem); line-height: .98; letter-spacing: -.045em; }
     .section-heading p { max-width: 310px; margin-bottom: 5px; color: var(--muted); line-height: 1.65; font-size: 14px; }
 
-    .day-card { position: relative; display: grid; grid-template-columns: 1fr 1.12fr; min-height: 485px; overflow: hidden; border-radius: var(--radius); background: white; box-shadow: 0 22px 65px rgba(48, 77, 71, .1); }
+    .day-card { position: relative; display: grid; grid-template-columns: 1fr 1.12fr; min-height: 485px; overflow: hidden; border-radius: var(--radius); background: white; box-shadow: 0 10px 28px rgba(48, 77, 71, .08); }
+    .day-card + .day-card { margin-top: 48px; }
     .day-card.reverse { grid-template-columns: 1.12fr 1fr; }
     .day-card.reverse .day-art { order: 2; }
     .day-art { position: relative; display: grid; place-items: center; overflow: hidden; background: var(--mint); }
     .day-card.sunny .day-art { background: var(--sun); }
     .day-card.blue .day-art { background: var(--sky); }
     .day-card.purple .day-art { background: var(--lilac); }
-    .day-art::before { content: ''; position: absolute; width: 250px; height: 250px; border: 1px solid rgba(20,47,59,.18); border-radius: 50%; box-shadow: 0 0 0 28px rgba(255,255,255,.12), 0 0 0 55px rgba(255,255,255,.1); }
+    .day-art::before { content: ''; position: absolute; width: 250px; height: 250px; border: 1px solid rgba(20,47,59,.18); border-radius: 50%; box-shadow: 0 0 0 28px rgba(255,255,255,.12); }
     .day-art svg { position: relative; width: min(74%, 330px); height: auto; overflow: visible; }
     .art-caption { position: absolute; bottom: 22px; left: 25px; font: 500 11px 'DM Mono', monospace; text-transform: uppercase; letter-spacing: .08em; }
     .day-copy { display: flex; flex-direction: column; justify-content: center; padding: clamp(32px, 6vw, 76px); }
@@ -151,6 +151,7 @@
       .section-heading { display: block; margin-bottom: 35px; }
       .section-heading p { margin-top: 22px; }
       .day-card, .day-card.reverse { display: block; }
+      .day-card + .day-card { margin-top: 24px; }
       .day-card.reverse .day-art { order: initial; }
       .day-art { min-height: 310px; }
       .day-copy { padding: 38px 28px 46px; }
@@ -208,10 +209,10 @@
           </div>
           <div class="day-copy">
             <span class="role-number">6:30 AM — 8:45 PM</span>
-            <h3>Ravi’s day has a little less rush.</h3>
-            <p>“A perfect day starts with chai I can actually sit down for. Then work that is steady, tools that work, and a supervisor who says thank you like they mean it.”</p>
+            <h3>Bilal’s day has a little less rush.</h3>
+            <p>“A perfect day starts with doodh patti I can actually sit down for. Then work that is steady, tools that work, and a supervisor who says thank you like they mean it.”</p>
             <p class="quote">I’d be home before the streetlights come on. My daughter would show me her drawing.</p>
-            <span class="tiny-label">Blue collar worker · Pune</span>
+            <span class="tiny-label">Blue collar worker · Lahore</span>
           </div>
         </article>
 
@@ -229,10 +230,10 @@
           </div>
           <div class="day-copy">
             <span class="role-number">7:00 AM — 4:00 PM</span>
-            <h3>Meena wants a home day, too.</h3>
+            <h3>Ayesha wants a home day, too.</h3>
             <p>“I like a clean house. I like the quiet after. A good day is when the family notices the work, asks if I’ve eaten, and I still have energy for my own plants.”</p>
             <p class="quote">A kind word doesn’t cost anything. It can carry you all the way home.</p>
-            <span class="tiny-label">House help · Bengaluru</span>
+            <span class="tiny-label">House help · Karachi</span>
           </div>
         </article>
 
@@ -248,10 +249,10 @@
           </div>
           <div class="day-copy">
             <span class="role-number">8:00 AM — 6:00 PM</span>
-            <h3>Arun takes the scenic route.</h3>
+            <h3>Usman takes the scenic route.</h3>
             <p>“No honking. No one slamming the door. Just a clean car, a full water bottle, and passengers who remember I’m a person before I’m a driver.”</p>
             <p class="quote">I’d finish with enough daylight to walk by the lake. That would be perfect.</p>
-            <span class="tiny-label">Driver · Mumbai</span>
+            <span class="tiny-label">Driver · Rawalpindi</span>
           </div>
         </article>
 
@@ -267,10 +268,10 @@
           </div>
           <div class="day-copy">
             <span class="role-number">9:30 AM — 6:30 PM</span>
-            <h3>Fatima has time to learn.</h3>
-            <p>“I want to ask questions without feeling silly. A proper lunch break. Someone who notices when I do good work, and a little time after office to call my mother.”</p>
+            <h3>Sana has time to learn.</h3>
+            <p>“I want to ask questions without feeling silly. A proper lunch break. Someone who notices when I do good work, and a little time after office to call my Ammi.”</p>
             <p class="quote">Being new should mean being supported, not being invisible.</p>
-            <span class="tiny-label">Junior staff · Hyderabad</span>
+            <span class="tiny-label">Junior staff · Islamabad</span>
           </div>
         </article>
       </div>
@@ -288,15 +289,15 @@
         <span class="eyebrow">Tomorrow starts here</span>
         <h2>Notice people.<br>Choose <em>kindness.</em></h2>
         <p>Our perfect days are connected. When one person gets a little more dignity, time, or care, the whole day changes shape.</p>
-        <div class="closing-foot"><span>My Perfect Day / 2024</span><span class="heart">♥</span><span>Made for the people who make things possible</span></div>
+        <div class="closing-foot"><span>My Perfect Day / 2026</span><span class="heart">♥</span><span>Made for the people who make things possible</span></div>
       </div>
     </footer>
   </main>
 
   <script>
     const root = document.documentElement;
-    const progress = document.querySelector('.progress');
     const reveals = document.querySelectorAll('.reveal');
+    let scrollFrame = 0;
 
     function updateScroll() {
       const scrollable = document.documentElement.scrollHeight - window.innerHeight;
@@ -312,7 +313,13 @@
     }, { threshold: 0.14 });
 
     reveals.forEach((element) => observer.observe(element));
-    window.addEventListener('scroll', updateScroll, { passive: true });
+    window.addEventListener('scroll', () => {
+      if (scrollFrame) return;
+      scrollFrame = requestAnimationFrame(() => {
+        updateScroll();
+        scrollFrame = 0;
+      });
+    }, { passive: true });
     window.addEventListener('resize', updateScroll);
     updateScroll();
   </script>
